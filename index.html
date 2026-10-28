@@ -10,12 +10,15 @@ img{max-width:100%}
 [hidden]{display:none!important}
 </style>
 <title>AthenAI Technologies · הטמעת AI, סוכנים והרצאות</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%230B6E5B%22/%3E%3Ccircle cx=%2210%22 cy=%2211%22 r=%223%22 fill=%22white%22/%3E%3Ccircle cx=%2222%22 cy=%2211%22 r=%223%22 fill=%22white%22/%3E%3Ccircle cx=%2216%22 cy=%2222%22 r=%223%22 fill=%22%23D9922B%22/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="he_IL">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:title" content="AthenAI Technologies · הטמעת AI, סוכנים והרצאות">
 <meta property="og:description" content="הטמעת בינה מלאכותית, סוכני AI והרצאות לחברות ומשרדים">
+<meta property="og:image" content="/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0B6E5B">
 <meta name="description" content="הטמעת בינה מלאכותית, סוכני AI והרצאות לחברות ומשרדים">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -83,7 +86,8 @@ p { margin: 0; }
 header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .8rem; }
 .brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 700; font-size: 1.05rem; }
-.brand svg { width: 30px; height: 30px; flex: none; }
+.brand img { width: 34px; height: 34px; flex: none; }
+.brand .ai { color: var(--accent); }
 .nav { display: flex; gap: 1.4rem; align-items: center; font-size: .95rem; }
 .nav a:not(.btn) { text-decoration: none; color: var(--muted); }
 .nav a:not(.btn):hover { color: var(--ink); }
@@ -213,8 +217,8 @@ html[dir="ltr"] .run li .tag { margin-left: 0; margin-right: .35rem; }
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="AthenAI Technologies">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><circle cx="10" cy="11" r="3" fill="var(--accent-ink)"/><circle cx="22" cy="11" r="3" fill="var(--accent-ink)"/><circle cx="16" cy="22" r="3" fill="var(--signal)"/><path d="M10 11 L22 11 M10 11 L16 22 M22 11 L16 22" stroke="var(--accent-ink)" stroke-width="1.6" fill="none"/></svg>
-      <span>AthenAI Technologies</span>
+      <img src="/assets/logo-mark.png" alt="" width="34" height="34">
+      <span>Athen<span class="ai">AI</span> Technologies</span>
     </a>
     <nav class="nav" aria-label="ניווט ראשי" data-i18n-aria="nav">
       <a class="hide-sm" href="#services" data-i18n="nav1">שירותים</a>
