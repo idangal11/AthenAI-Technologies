@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px/1.5 system-ui,sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>AthenAI Technologies · הטמעת AI, סוכנים והרצאות</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%230B6E5B%22/%3E%3Ccircle cx=%2210%22 cy=%2211%22 r=%223%22 fill=%22white%22/%3E%3Ccircle cx=%2222%22 cy=%2211%22 r=%223%22 fill=%22white%22/%3E%3Ccircle cx=%2216%22 cy=%2222%22 r=%223%22 fill=%22%23D9922B%22/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="AthenAI Technologies · הטמעת AI, סוכנים והרצאות">
+<meta property="og:description" content="הטמעת בינה מלאכותית, סוכני AI והרצאות לחברות ומשרדים">
+<meta name="theme-color" content="#0B6E5B">
+<meta name="description" content="הטמעת בינה מלאכותית, סוכני AI והרצאות לחברות ומשרדים">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: start-aligned (RTL in Hebrew, LTR in English) editorial column; hero pairs the thesis with a live "agent run" log, then services, process, lectures, contact */
+:root {
+  --bg: #F3F5F2;
+  --surface: #FFFFFF;
+  --ink: #111C19;
+  --muted: #56645F;
+  --line: #D6DDD8;
+  --accent: #0B6E5B;
+  --accent-ink: #FFFFFF;
+  --signal: #D9922B;
+  --log-bg: #0F1A17;
+  --log-fg: #CFE3DA;
+  --log-dim: #6F8A80;
+  --font-display: "Frank Ruhl Libre", "David", "Times New Roman", serif;
+  --font-body: "IBM Plex Sans Hebrew", "Arial Hebrew", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --step--1: clamp(0.82rem, 0.8rem + 0.1vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem);
+  --step-2: clamp(1.6rem, 1.3rem + 1.2vw, 2.3rem);
+  --step-3: clamp(2.3rem, 1.6rem + 3vw, 4.4rem);
+  --wrap: 72rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B1311; --surface: #121D1A; --ink: #E7EFEB; --muted: #95A9A1; --line: #24332E;
+    --accent: #3FC1A1; --accent-ink: #062019; --signal: #F0B055;
+    --log-bg: #060C0B; --log-fg: #CFE3DA; --log-dim: #5F7A70;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0B1311; --surface: #121D1A; --ink: #E7EFEB; --muted: #95A9A1; --line: #24332E;
+  --accent: #3FC1A1; --accent-ink: #062019; --signal: #F0B055;
+  --log-bg: #060C0B; --log-fg: #CFE3DA; --log-dim: #5F7A70;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.7;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap {
+  max-width: var(--wrap); margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.15; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.eyebrow { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: .08em; color: var(--accent); direction: ltr; unicode-bidi: isolate; display: inline-block; }
+.eyebrow-he { font-size: var(--step--1); font-weight: 600; letter-spacing: .04em; color: var(--accent); }
+
+/* header */
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .8rem; }
+.brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 700; font-size: 1.05rem; }
+.brand svg { width: 30px; height: 30px; flex: none; }
+.nav { display: flex; gap: 1.4rem; align-items: center; font-size: .95rem; }
+.nav a:not(.btn) { text-decoration: none; color: var(--muted); }
+.nav a:not(.btn):hover { color: var(--ink); }
+.btn { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 1.3rem; border-radius: 999px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--accent); cursor: pointer; font: inherit; font-weight: 600; transition: transform .15s ease, background .15s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-ghost { background: transparent; color: var(--accent); }
+.btn-sm { padding: .5rem 1rem; font-size: .92rem; }
+@media (max-width: 760px) { .nav .hide-sm { display: none; } }
+
+/* hero */
+.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; padding-block: clamp(3rem, 7vw, 6rem) clamp(3rem, 6vw, 5rem); }
+.hero h1 { font-size: var(--step-3); font-weight: 900; letter-spacing: -.01em; margin-block: .9rem 1.2rem; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .lead { font-size: var(--step-1); color: var(--muted); max-width: 34ch; line-height: 1.6; }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+.hero .facts { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; margin-top: 2.2rem; color: var(--muted); font-size: .95rem; list-style: none; padding: 0; }
+.hero .facts li::before { content: "✓"; color: var(--accent); margin-inline-end: .45rem; font-weight: 700; }
+.hero > .wrap > * { min-width: 0; }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } }
+
+/* agent run log */
+.run { background: var(--log-bg); color: var(--log-fg); border-radius: 14px; font-family: var(--font-mono); font-size: .86rem; line-height: 1.55; box-shadow: 0 30px 60px -30px rgb(0 0 0 / .45); overflow: hidden; }
+.run-head { display: flex; justify-content: space-between; align-items: center; gap: .5rem; padding: .7rem 1rem; border-bottom: 1px solid rgb(255 255 255 / .08); color: var(--log-dim); font-size: .78rem; direction: ltr; }
+.run-head .live { display: inline-flex; align-items: center; gap: .4rem; color: var(--signal); }
+.run-head .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--signal); animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .25; } }
+.run ol { list-style: none; margin: 0; padding: .9rem 1rem 1.1rem; display: grid; gap: .55rem; }
+.run li { display: grid; grid-template-columns: 4.2rem 1fr; gap: .6rem; align-items: baseline; font-family: var(--font-body); font-size: .92rem; transition: color .3s, opacity .3s; }
+.run li .t { font-family: var(--font-mono); font-size: .75rem; color: var(--log-dim); direction: ltr; text-align: left; }
+.run li .tag { font-family: var(--font-mono); font-size: .72rem; padding: .05rem .4rem; border-radius: 4px; background: rgb(255 255 255 / .07); color: var(--log-dim); margin-left: .35rem; direction: ltr; display: inline-block; }
+.run li.on { color: #fff; }
+.run li.on .tag { background: var(--signal); color: #1a1205; }
+.run li.human .tag { background: rgb(63 193 161 / .2); color: #7fe0c6; }
+.run-foot { padding: .7rem 1rem; border-top: 1px solid rgb(255 255 255 / .08); font-size: .8rem; color: var(--log-dim); font-family: var(--font-body); }
+.run-foot b { color: var(--log-fg); font-weight: 600; }
+
+/* sections */
+section.block { padding-block: clamp(3.5rem, 8vw, 6.5rem); border-top: 1px solid var(--line); }
+.sec-head { display: grid; gap: .8rem; max-width: 44rem; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+.sec-head h2 { font-size: var(--step-2); }
+.sec-head p { color: var(--muted); font-size: var(--step-1); line-height: 1.6; }
+
+.services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.svc { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 1.8rem; display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+.svc .ico { width: 44px; height: 44px; color: var(--accent); }
+.svc h3 { font-size: var(--step-1); }
+.svc p { color: var(--muted); }
+.svc ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .45rem; font-size: .96rem; }
+.svc li { padding-inline-start: 1.1rem; position: relative; }
+.svc li::before { content: ""; position: absolute; inset-inline-start: 0; top: .72em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.svc.feature { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.svc.feature p { color: color-mix(in srgb, var(--bg) 72%, var(--ink)); }
+.svc.feature .ico { color: var(--signal); }
+.svc.feature li::before { background: var(--signal); }
+.svc .badge { align-self: flex-start; font-size: .78rem; font-weight: 600; padding: .2rem .7rem; border-radius: 999px; background: var(--signal); color: #1a1205; }
+@media (max-width: 900px) { .services { grid-template-columns: 1fr; } }
+
+/* process */
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; list-style: none; margin: 0; padding: 0; counter-reset: s; }
+.steps li { counter-increment: s; padding-block: 1.4rem; padding-inline: 1.2rem 0; border-top: 2px solid var(--line); position: relative; min-width: 0; }
+.steps li:first-child { border-top-color: var(--accent); }
+.steps li::before { content: counter(s); font-family: var(--font-display); font-weight: 900; font-size: 2.4rem; color: var(--accent); line-height: 1; display: block; margin-bottom: .6rem; }
+.steps h3 { font-family: var(--font-body); font-size: 1.08rem; font-weight: 700; margin-bottom: .35rem; }
+.steps p { color: var(--muted); font-size: .95rem; }
+.steps .dur { display: inline-block; margin-top: .6rem; font-size: .8rem; color: var(--accent); font-weight: 600; }
+@media (max-width: 900px) { .steps { grid-template-columns: 1fr; } .steps li { padding-inline-end: 0; } }
+
+/* lectures */
+.lectures { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.lec { background: var(--surface); padding: 1.6rem 1.8rem; display: grid; gap: .5rem; min-width: 0; }
+.lec .meta { display: flex; flex-wrap: wrap; gap: .4rem; }
+.lec .chip { font-size: .78rem; font-weight: 600; padding: .15rem .6rem; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+.lec h3 { font-size: 1.3rem; }
+.lec p { color: var(--muted); font-size: .97rem; }
+@media (max-width: 760px) { .lectures { grid-template-columns: 1fr; } }
+
+/* audience */
+.audience { display: flex; flex-wrap: wrap; gap: .6rem; list-style: none; padding: 0; margin: 0; }
+.audience li { padding: .6rem 1.1rem; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-weight: 500; }
+
+/* faq */
+.faq { display: grid; gap: .7rem; max-width: 50rem; }
+.faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.3rem; }
+.faq summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--accent); font-size: 1.3rem; line-height: 1; }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { color: var(--muted); margin-top: .7rem; }
+
+/* contact */
+.contact { background: var(--ink); color: var(--bg); }
+.contact .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); padding-block: clamp(3.5rem, 8vw, 6rem); }
+.contact .wrap > * { min-width: 0; }
+.contact h2 { font-size: var(--step-2); margin-block: .6rem 1rem; }
+.contact .eyebrow-he { color: var(--signal); }
+.contact p.sub { color: color-mix(in srgb, var(--bg) 70%, var(--ink)); font-size: var(--step-1); line-height: 1.6; }
+.cinfo { display: grid; gap: .8rem; margin-top: 2rem; }
+.cinfo div { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; }
+.cinfo .k { font-size: .85rem; color: color-mix(in srgb, var(--bg) 60%, var(--ink)); min-width: 4.5rem; }
+.cinfo .v { text-decoration: none; font-weight: 600; direction: ltr; unicode-bidi: isolate; user-select: all; }
+.copy { font: inherit; font-size: .78rem; padding: .15rem .6rem; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--bg) 35%, var(--ink)); background: transparent; color: inherit; cursor: pointer; }
+form.lead-form { background: var(--surface); color: var(--ink); border-radius: 16px; padding: clamp(1.3rem, 3vw, 2rem); display: grid; gap: 1rem; }
+.field { display: grid; gap: .35rem; }
+.field label { font-size: .9rem; font-weight: 600; }
+.field input, .field select, .field textarea { font: inherit; font-size: 1rem; padding: .7rem .9rem; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); width: 100%; }
+.field textarea { min-height: 6rem; resize: vertical; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-note { font-size: .85rem; color: var(--muted); }
+.form-msg { font-size: .95rem; color: var(--accent); font-weight: 600; }
+@media (max-width: 860px) { .contact .wrap { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .row2 { grid-template-columns: 1fr; } }
+
+footer.bottom { border-top: 1px solid var(--line); }
+footer.bottom .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-block: 1.6rem; color: var(--muted); font-size: .9rem; }
+.lang { font: inherit; font-size: .85rem; font-weight: 600; padding: .35rem .7rem; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+.lang:hover { border-color: var(--accent); color: var(--accent); }
+.cinfo .person { font-weight: 600; }
+.cinfo a.v[href^="https"] { direction: inherit; text-decoration: underline; text-underline-offset: 3px; user-select: auto; }
+html[dir="ltr"] .run li .tag { margin-left: 0; margin-right: .35rem; }
+.brand span, .nav .btn-sm { white-space: nowrap; }
+@media (max-width: 760px) { .nav { gap: .6rem; } }
+@media (max-width: 480px) { .nav .btn-sm { display: none; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="AthenAI Technologies">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><circle cx="10" cy="11" r="3" fill="var(--accent-ink)"/><circle cx="22" cy="11" r="3" fill="var(--accent-ink)"/><circle cx="16" cy="22" r="3" fill="var(--signal)"/><path d="M10 11 L22 11 M10 11 L16 22 M22 11 L16 22" stroke="var(--accent-ink)" stroke-width="1.6" fill="none"/></svg>
+      <span>AthenAI Technologies</span>
+    </a>
+    <nav class="nav" aria-label="ניווט ראשי" data-i18n-aria="nav">
+      <a class="hide-sm" href="#services" data-i18n="nav1">שירותים</a>
+      <a class="hide-sm" href="#process" data-i18n="nav2">איך זה עובד</a>
+      <a class="hide-sm" href="#lectures" data-i18n="nav3">הרצאות</a>
+      <a class="hide-sm" href="#faq" data-i18n="nav4">שאלות</a>
+      <button class="lang" type="button" id="lang-toggle" lang="en" aria-label="Switch to English">EN</button>
+      <a class="btn btn-primary btn-sm" href="#contact" data-i18n="navcta">לשיחת ייעוץ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow-he" data-i18n="h_eyebrow">הטמעת AI · סוכנים חכמים · הרצאות</span>
+        <h1 data-i18n="h_title">העובד הבא שלכם <em>לא צריך שולחן.</em></h1>
+        <p class="lead" data-i18n="h_lead">אנחנו מטמיעים בינה מלאכותית בחברות ובמשרדים: בונים סוכני AI שעושים את העבודה החוזרת, מחברים אותם למערכות שכבר יש לכם, ומלמדים את הצוות לעבוד איתם.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="#contact" data-i18n="h_cta1">קבעו שיחת אבחון חינם</a>
+          <a class="btn btn-ghost" href="#lectures" data-i18n="h_cta2">הזמינו הרצאה</a>
+        </div>
+        <ul class="facts">
+          <li data-i18n="h_f1">ליווי מקצה לקצה</li>
+          <li data-i18n="h_f2">פיילוט ראשון תוך שבועיים</li>
+          <li data-i18n="h_f3">אבטחת מידע ופרטיות</li>
+        </ul>
+      </div>
+
+      <div class="run" role="img" aria-label="דוגמה לסוכן AI שמטפל בפנייה של לקוח" data-i18n-aria="run_aria">
+        <div class="run-head"><span>agent://office-inbox · run #1284</span><span class="live">live</span></div>
+        <ol id="runlog">
+          <li><span class="t">09:02:11</span><span><span class="tag">email</span><span data-i18n="r1">התקבלה פנייה: "אפשר הצעת מחיר ל־40 משתמשים?"</span></span></li>
+          <li><span class="t">09:02:12</span><span><span class="tag">classify</span><span data-i18n="r2">סווגה כבקשת הצעת מחיר · דחיפות בינונית</span></span></li>
+          <li><span class="t">09:02:14</span><span><span class="tag">crm</span><span data-i18n="r3">נשלפו פרטי הלקוח והיסטוריית רכישות</span></span></li>
+          <li><span class="t">09:02:17</span><span><span class="tag">draft</span><span data-i18n="r4">נוצרה טיוטת הצעה לפי המחירון העדכני</span></span></li>
+          <li class="human"><span class="t">09:02:18</span><span><span class="tag">human</span><span data-i18n="r5">נשלחה לאישור של מנהלת המכירות</span></span></li>
+          <li><span class="t">09:05:40</span><span><span class="tag">send</span><span data-i18n="r6">אושרה ונשלחה ללקוח · משימת מעקב נקבעה</span></span></li>
+        </ol>
+        <div class="run-foot" data-i18n="r_foot">זמן טיפול: <b>3 דקות ו־29 שניות</b> במקום כחצי שעה של עבודה ידנית · דוגמה להמחשה</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-he" data-i18n="s_eyebrow">מה אנחנו עושים</span>
+        <h2 data-i18n="s_title">שלושה דרכים להכניס AI לעבודה היומיומית</h2>
+        <p data-i18n="s_lead">לא עוד כלי שאף אחד לא משתמש בו. מתחילים מהתהליכים שגוזלים לכם הכי הרבה זמן, ובונים פתרון שמתאים בדיוק להם.</p>
+      </div>
+      <div class="services">
+        <article class="svc">
+          <svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="9" width="34" height="24" rx="3"/><path d="M15 39h14M22 33v6"/><path d="M12 25l5-6 5 4 8-9"/></svg>
+          <h3 data-i18n="s1_t">הטמעת AI בארגון</h3>
+          <p data-i18n="s1_p">מיפוי תהליכים, בחירת הכלים הנכונים וחיבור שלהם למערכות הקיימות, עם מדדים ברורים להצלחה.</p>
+          <ul>
+            <li data-i18n="s1_1">אבחון ומיפוי הזדמנויות</li>
+            <li data-i18n="s1_2">חיבור ל־CRM, מייל, Drive ו־Office</li>
+            <li data-i18n="s1_3">מדיניות שימוש ואבטחת מידע</li>
+            <li data-i18n="s1_4">הדרכת עובדים והטמעה בשטח</li>
+          </ul>
+        </article>
+        <article class="svc feature">
+          <span class="badge" data-i18n="s2_badge">הכי מבוקש</span>
+          <svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><circle cx="32" cy="12" r="5"/><circle cx="22" cy="32" r="6"/><path d="M16 15l4 12M28 15l-4 12M17 12h10"/></svg>
+          <h3 data-i18n="s2_t">פיתוח סוכני AI</h3>
+          <p data-i18n="s2_p">סוכנים שעובדים בשבילכם מסביב לשעון: עונים ללקוחות, מסכמים מסמכים, מכינים הצעות מחיר ומעדכנים מערכות.</p>
+          <ul>
+            <li data-i18n="s2_1">סוכן שירות ומענה ללקוחות</li>
+            <li data-i18n="s2_2">סוכן מכירות ותיאום פגישות</li>
+            <li data-i18n="s2_3">עיבוד מסמכים, חוזים וחשבוניות</li>
+            <li data-i18n="s2_4">בקרה אנושית בכל שלב קריטי</li>
+          </ul>
+        </article>
+        <article class="svc">
+          <svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="6" y="6" width="32" height="20" rx="2"/><path d="M14 38l8-12 8 12"/><path d="M12 14h12M12 19h18"/></svg>
+          <h3 data-i18n="s3_t">הרצאות וסדנאות</h3>
+          <p data-i18n="s3_p">הרצאות מעשיות להנהלות, לצוותים ולכנסים. פחות באזוורדס, יותר דוגמאות חיות שאפשר ליישם כבר מחר.</p>
+          <ul>
+            <li data-i18n="s3_1">הרצאות השראה להנהלה</li>
+            <li data-i18n="s3_2">הרצאות על סוכני AI</li>
+            <li data-i18n="s3_3">סדנאות מעשיות לצוותים</li>
+            <li data-i18n="s3_4">בהתאמה לתחום ולקהל</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="process">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-he" data-i18n="p_eyebrow">איך זה עובד</span>
+        <h2 data-i18n="p_title">מהשיחה הראשונה ועד סוכן שעובד אצלכם</h2>
+      </div>
+      <ol class="steps">
+        <li><h3 data-i18n="p1_t">שיחת אבחון</h3><p data-i18n="p1_p">מכירים את העסק, הצוות והתהליכים שהכי מכבידים.</p><span class="dur" data-i18n="p1_d">45 דקות · ללא עלות</span></li>
+        <li><h3 data-i18n="p2_t">תוכנית עבודה</h3><p data-i18n="p2_p">בוחרים יחד תהליך אחד עם החזר ברור ומגדירים מדד הצלחה.</p><span class="dur" data-i18n="p2_d">שבוע</span></li>
+        <li><h3 data-i18n="p3_t">פיילוט</h3><p data-i18n="p3_p">בונים גרסה ראשונה שעובדת על נתונים אמיתיים שלכם.</p><span class="dur" data-i18n="p3_d">שבועיים</span></li>
+        <li><h3 data-i18n="p4_t">הטמעה והדרכה</h3><p data-i18n="p4_p">מחברים למערכות, מדריכים את הצוות ומוודאים שימוש בפועל.</p><span class="dur" data-i18n="p4_d">2–4 שבועות</span></li>
+        <li><h3 data-i18n="p5_t">ליווי ושיפור</h3><p data-i18n="p5_p">מודדים, משפרים ומרחיבים לתהליכים נוספים.</p><span class="dur" data-i18n="p5_d">שוטף</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="lectures">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-he" data-i18n="l_eyebrow">הרצאות</span>
+        <h2 data-i18n="l_title">הרצאות AI שהקהל יוצא מהן עם משהו ביד</h2>
+        <p data-i18n="l_lead">כל הרצאה מותאמת לקהל ולתחום, וכוללת הדגמות חיות. מתאים לימי צוות, כנסים, ישיבות הנהלה וארגונים מקצועיים.</p>
+      </div>
+      <div class="lectures">
+        <article class="lec">
+          <div class="meta"><span class="chip" data-i18n="l1_c1">הנהלה</span><span class="chip" data-i18n="l1_c2">60–90 דק׳</span></div>
+          <h3 data-i18n="l1_t">AI בארגון: מאיפה מתחילים</h3>
+          <p data-i18n="l1_p">מה באמת עובד היום, איפה נמצא ההחזר הגדול, ואיך מתחילים בלי לסכן את המידע של הארגון.</p>
+        </article>
+        <article class="lec">
+          <div class="meta"><span class="chip" data-i18n="l2_c1">כל הקהלים</span><span class="chip" data-i18n="l2_c2">60–90 דק׳</span></div>
+          <h3 data-i18n="l2_t">סוכני AI: העובדים הדיגיטליים</h3>
+          <p data-i18n="l2_p">מה זה סוכן, במה הוא שונה מצ׳אטבוט, ודוגמאות חיות לסוכנים שמנהלים תהליכים שלמים.</p>
+        </article>
+        <article class="lec">
+          <div class="meta"><span class="chip" data-i18n="l3_c1">צוותים</span><span class="chip" data-i18n="l3_c2">סדנה · 3 שעות</span></div>
+          <h3 data-i18n="l3_t">סדנת פרודוקטיביות עם AI</h3>
+          <p data-i18n="l3_p">כל משתתף יוצא עם לפחות שלושה תהליכים מהעבודה שלו שכבר עובדים עם AI.</p>
+        </article>
+        <article class="lec">
+          <div class="meta"><span class="chip" data-i18n="l4_c1">משרדים</span><span class="chip" data-i18n="l4_c2">60 דק׳</span></div>
+          <h3 data-i18n="l4_t">AI למשרדי עו״ד, רו״ח וייעוץ</h3>
+          <p data-i18n="l4_p">ניסוח, סיכום מסמכים, מחקר ומענה ללקוחות, עם דגש על סודיות ואחריות מקצועית.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-he" data-i18n="a_eyebrow">למי זה מתאים</span>
+        <h2 data-i18n="a_title">עסקים שרוצים לעשות יותר עם אותו צוות</h2>
+      </div>
+      <ul class="audience">
+        <li data-i18n="a1">משרדי עורכי דין</li><li data-i18n="a2">משרדי רואי חשבון</li><li data-i18n="a3">חברות שירות ומכירות</li><li data-i18n="a4">סוכנויות ביטוח</li><li data-i18n="a5">נדל״ן ותיווך</li><li data-i18n="a6">חברות טכנולוגיה</li><li data-i18n="a7">מרפאות וקליניקות</li><li data-i18n="a8">ארגונים ועמותות</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-he" data-i18n="f_eyebrow">שאלות נפוצות</span>
+        <h2 data-i18n="f_title">לפני שמתחילים</h2>
+      </div>
+      <div class="faq">
+        <details open><summary data-i18n="f1_q">צריך ידע טכני כדי לעבוד איתכם?</summary><p data-i18n="f1_a">לא. אנחנו מטפלים בכל החלק הטכני ומלמדים את הצוות להשתמש בפתרון בשפה פשוטה.</p></details>
+        <details><summary data-i18n="f2_q">מה קורה עם המידע הרגיש של העסק?</summary><p data-i18n="f2_a">אנחנו עובדים עם כלים ברמה ארגונית, מגדירים הרשאות ומדיניות שימוש, ומשאירים אדם בלולאה בכל החלטה קריטית.</p></details>
+        <details><summary data-i18n="f3_q">כמה זמן לוקח לראות תוצאות?</summary><p data-i18n="f3_a">פיילוט ראשון עובד בדרך כלל תוך כשבועיים מרגע שמסכמים על תוכנית העבודה.</p></details>
+        <details><summary data-i18n="f4_q">אפשר להזמין רק הרצאה?</summary><p data-i18n="f4_a">בטח. הרצאות וסדנאות זמינות גם בנפרד, פרונטלית או בזום.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow-he" data-i18n="c_eyebrow">יצירת קשר</span>
+        <h2 data-i18n="c_title">בואו נמצא את התהליך הראשון שה־AI ייקח מכם</h2>
+        <p class="sub" data-i18n="c_lead">שיחת אבחון של 45 דקות, ללא עלות וללא התחייבות. תצאו ממנה עם לפחות רעיון אחד שאפשר ליישם מיד.</p>
+        <div class="cinfo">
+          <div><span class="k" data-i18n="c_name_k">שם</span><span class="person" data-i18n="c_name_v">עידן גל, מייסד</span></div>
+          <div><span class="k" data-i18n="c_phone_k">טלפון</span><a class="v" id="c-phone" href="tel:+972524268076">052-426-8076</a><button class="copy" type="button" data-copy="c-phone" data-i18n="c_copy">העתקה</button></div>
+          <div><span class="k">WhatsApp</span><a class="v" href="https://wa.me/972524268076" target="_blank" rel="noopener" data-i18n="c_wa">לשליחת הודעה</a></div>
+        </div>
+      </div>
+      <form class="lead-form" id="leadform" novalidate>
+        <div class="row2">
+          <div class="field"><label for="f-name" data-i18n="fm_name">שם מלא</label><input id="f-name" name="name" required autocomplete="name"></div>
+          <div class="field"><label for="f-company" data-i18n="fm_company">חברה / משרד</label><input id="f-company" name="company" autocomplete="organization"></div>
+        </div>
+        <div class="field"><label for="f-topic" data-i18n="fm_topic">מה מעניין אתכם?</label>
+          <select id="f-topic" name="topic">
+            <option value="impl" data-i18n="fm_o1">הטמעת AI בארגון</option>
+            <option value="agent" data-i18n="fm_o2">פיתוח סוכן AI</option>
+            <option value="lecture" data-i18n="fm_o3">הרצאה או סדנה</option>
+            <option value="unsure" data-i18n="fm_o4">עוד לא בטוח, רוצה לשמוע</option>
+          </select>
+        </div>
+        <div class="field"><label for="f-msg" data-i18n="fm_msg">ספרו לנו בקצרה</label><textarea id="f-msg" name="msg" placeholder="למשל: אנחנו משרד של 12 עובדים ומבזבזים שעות על מענה למיילים" data-i18n-ph="fm_ph"></textarea></div>
+        <button class="btn btn-primary" type="submit" data-i18n="fm_send">שליחה בוואטסאפ</button>
+        <p class="form-note" data-i18n="fm_note">הכפתור פותח וואטסאפ עם ההודעה מוכנה לשליחה.</p>
+        <p class="form-msg" id="form-msg" hidden></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="bottom">
+  <div class="wrap">
+    <span data-i18n="foot">© 2026 AthenAI Technologies · הטמעת AI, סוכנים והרצאות</span>
+    <a href="#top" data-i18n="foot_top">חזרה למעלה ↑</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var WHATSAPP = "972524268076";
+
+  var EN = {
+    nav: "Main navigation", nav1: "Services", nav2: "How it works", nav3: "Lectures", nav4: "FAQ", navcta: "Book a consultation",
+    h_eyebrow: "AI implementation · Smart agents · Lectures",
+    h_title: "Your next employee <em>doesn’t need a desk.</em>",
+    h_lead: "We bring AI into companies and offices: we build AI agents that handle the repetitive work, connect them to the systems you already use, and teach your team to work with them.",
+    h_cta1: "Book a free discovery call", h_cta2: "Book a lecture",
+    h_f1: "End-to-end support", h_f2: "First pilot within two weeks", h_f3: "Data security and privacy",
+    run_aria: "Example of an AI agent handling a customer request",
+    r1: "New request: “Can I get a quote for 40 users?”", r2: "Classified as a quote request · medium priority",
+    r3: "Pulled customer details and purchase history", r4: "Drafted a quote from the current price list",
+    r5: "Sent to the sales manager for approval", r6: "Approved and sent to the customer · follow-up scheduled",
+    r_foot: "Handling time: <b>3 min 29 sec</b> instead of about half an hour of manual work · illustrative example",
+    s_eyebrow: "What we do", s_title: "Three ways to bring AI into everyday work",
+    s_lead: "Not another tool nobody uses. We start with the processes that take up most of your time and build a solution that fits them exactly.",
+    s1_t: "AI implementation", s1_p: "Process mapping, choosing the right tools and connecting them to your existing systems, with clear success metrics.",
+    s1_1: "Discovery and opportunity mapping", s1_2: "Integration with CRM, email, Drive and Office", s1_3: "Usage policy and data security", s1_4: "Staff training and rollout",
+    s2_badge: "Most requested", s2_t: "AI agent development", s2_p: "Agents that work for you around the clock: answering customers, summarizing documents, preparing quotes and updating systems.",
+    s2_1: "Customer service agent", s2_2: "Sales and scheduling agent", s2_3: "Documents, contracts and invoices", s2_4: "Human review at every critical step",
+    s3_t: "Lectures and workshops", s3_p: "Practical talks for management, teams and conferences. Fewer buzzwords, more live examples you can apply tomorrow.",
+    s3_1: "Inspirational talks for leadership", s3_2: "Lectures on AI agents", s3_3: "Hands-on team workshops", s3_4: "Tailored to your field and audience",
+    p_eyebrow: "How it works", p_title: "From the first call to an agent working for you",
+    p1_t: "Discovery call", p1_p: "We get to know your business, your team and the processes that slow you down most.", p1_d: "45 min · free",
+    p2_t: "Work plan", p2_p: "Together we pick one process with a clear return and define how we measure success.", p2_d: "1 week",
+    p3_t: "Pilot", p3_p: "We build a first version that runs on your real data.", p3_d: "2 weeks",
+    p4_t: "Rollout and training", p4_p: "We connect it to your systems, train the team and make sure it gets used.", p4_d: "2–4 weeks",
+    p5_t: "Ongoing support", p5_p: "We measure, improve and expand to more processes.", p5_d: "Ongoing",
+    l_eyebrow: "Lectures", l_title: "AI lectures your audience leaves with something real",
+    l_lead: "Every lecture is tailored to the audience and field, with live demos. Great for team days, conferences, leadership meetings and professional associations.",
+    l1_c1: "Leadership", l1_c2: "60–90 min", l1_t: "AI in your organization: where to start", l1_p: "What really works today, where the big returns are, and how to start without putting your data at risk.",
+    l2_c1: "All audiences", l2_c2: "60–90 min", l2_t: "AI agents: the digital workforce", l2_p: "What an agent is, how it differs from a chatbot, and live examples of agents running whole processes.",
+    l3_c1: "Teams", l3_c2: "Workshop · 3 hours", l3_t: "AI productivity workshop", l3_p: "Every participant leaves with at least three of their own work processes already running with AI.",
+    l4_c1: "Offices", l4_c2: "60 min", l4_t: "AI for law, accounting and consulting firms", l4_p: "Drafting, document summaries, research and client communication, with a focus on confidentiality and professional responsibility.",
+    a_eyebrow: "Who it’s for", a_title: "Businesses that want to do more with the same team",
+    a1: "Law firms", a2: "Accounting firms", a3: "Service and sales companies", a4: "Insurance agencies", a5: "Real estate", a6: "Tech companies", a7: "Clinics", a8: "Nonprofits and organizations",
+    f_eyebrow: "FAQ", f_title: "Before we start",
+    f1_q: "Do I need technical knowledge to work with you?", f1_a: "No. We handle all the technical work and teach your team to use the solution in plain language.",
+    f2_q: "What happens to my business’s sensitive data?", f2_a: "We work with enterprise-grade tools, set permissions and usage policies, and keep a human in the loop for every critical decision.",
+    f3_q: "How long until we see results?", f3_a: "A first pilot usually runs within about two weeks of agreeing on the work plan.",
+    f4_q: "Can I book just a lecture?", f4_a: "Of course. Lectures and workshops are available on their own, in person or over Zoom.",
+    c_eyebrow: "Contact", c_title: "Let’s find the first process AI can take off your plate",
+    c_lead: "A 45-minute discovery call, free and with no commitment. You’ll leave with at least one idea you can put to work right away.",
+    c_name_k: "Name", c_name_v: "Idan Gal, Founder", c_phone_k: "Phone", c_copy: "Copy", c_wa: "Send a message",
+    fm_name: "Full name", fm_company: "Company / office", fm_topic: "What are you interested in?",
+    fm_o1: "AI implementation", fm_o2: "AI agent development", fm_o3: "Lecture or workshop", fm_o4: "Not sure yet, want to hear more",
+    fm_msg: "Tell us briefly", fm_ph: "For example: we’re a 12-person office spending hours answering emails",
+    fm_send: "Send via WhatsApp", fm_note: "The button opens WhatsApp with your message ready to send.",
+    foot: "© 2026 AthenAI Technologies · AI implementation, agents and lectures", foot_top: "Back to top ↑"
+  };
+  var MSG = {
+    he: { copied: "הועתק", needName: "נא למלא שם כדי שנדע למי לחזור.", opened: "פתחנו וואטסאפ עם ההודעה שלכם. אם הוא לא נפתח, אפשר להתקשר ל־052-426-8076.",
+          hi: "היי, שמי ", from: " מ", topic: "מתעניין/ת ב: ", title: "AthenAI Technologies · הטמעת AI, סוכנים והרצאות" },
+    en: { copied: "Copied", needName: "Please enter your name so we know who to get back to.", opened: "We opened WhatsApp with your message. If it didn’t open, call +972-52-426-8076.",
+          hi: "Hi, my name is ", from: " from ", topic: "I’m interested in: ", title: "AthenAI Technologies · AI implementation, agents and lectures" }
+  };
+
+  var HE = {};
+  document.querySelectorAll("[data-i18n]").forEach(function (el) { HE[el.dataset.i18n] = el.innerHTML; });
+  document.querySelectorAll("[data-i18n-ph]").forEach(function (el) { HE[el.dataset.i18nPh] = el.placeholder; });
+  document.querySelectorAll("[data-i18n-aria]").forEach(function (el) { HE[el.dataset.i18nAria] = el.getAttribute("aria-label"); });
+
+  var lang = "he";
+  var toggle = document.getElementById("lang-toggle");
+  function setLang(l) {
+    lang = l;
+    var d = l === "en" ? EN : HE;
+    document.documentElement.lang = l;
+    document.documentElement.dir = l === "en" ? "ltr" : "rtl";
+    document.querySelectorAll("[data-i18n]").forEach(function (el) { el.innerHTML = d[el.dataset.i18n]; });
+    document.querySelectorAll("[data-i18n-ph]").forEach(function (el) { el.placeholder = d[el.dataset.i18nPh]; });
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) { el.setAttribute("aria-label", d[el.dataset.i18nAria]); });
+    document.title = MSG[l].title;
+    toggle.textContent = l === "en" ? "עב" : "EN";
+    toggle.lang = l === "en" ? "he" : "en";
+    toggle.setAttribute("aria-label", l === "en" ? "מעבר לעברית" : "Switch to English");
+    document.getElementById("form-msg").hidden = true;
+    try { localStorage.setItem("lang", l); } catch (e) {}
+  }
+  toggle.addEventListener("click", function () { setLang(lang === "en" ? "he" : "en"); });
+  var saved = null;
+  try { saved = localStorage.getItem("lang"); } catch (e) {}
+  if (/[?&]lang=en\b/.test(location.search)) saved = "en";
+  if (saved === "en") setLang("en");
+
+  var items = document.querySelectorAll("#runlog li");
+  var i = 0;
+  function tick() {
+    items.forEach(function (el, n) { el.classList.toggle("on", n === i); });
+    i = (i + 1) % items.length;
+  }
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) { tick(); setInterval(tick, 1600); }
+
+  document.querySelectorAll("[data-copy]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var el = document.getElementById(btn.dataset.copy);
+      var done = function () { btn.textContent = MSG[lang].copied; setTimeout(function () { btn.innerHTML = (lang === "en" ? EN : HE)[btn.dataset.i18n]; }, 1500); };
+      var fallback = function () { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+      try { navigator.clipboard.writeText(el.textContent.trim()).then(done, fallback); } catch (e) { fallback(); }
+    });
+  });
+
+  var form = document.getElementById("leadform");
+  var msg = document.getElementById("form-msg");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var m = MSG[lang];
+    var name = form.name.value.trim();
+    if (!name) { msg.hidden = false; msg.textContent = m.needName; form.name.focus(); return; }
+    var company = form.company.value.trim();
+    var topic = form.topic.options[form.topic.selectedIndex].text;
+    var text = m.hi + name + (company ? m.from + company : "") + ".\n" + m.topic + topic + (form.msg.value.trim() ? "\n" + form.msg.value.trim() : "");
+    window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(text), "_blank", "noopener");
+    msg.hidden = false;
+    msg.textContent = m.opened;
+  });
+})();
+</script>
+
+</body>
+</html>
